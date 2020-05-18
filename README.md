@@ -18,10 +18,10 @@ namespace MyNamespace;
 
 use Doctrine\Common\Cache\FilesystemCache;
 use Pimple\Container;
-use Tholcomb\Rw\Core\Symple;
-use Tholcomb\Rw\Http\HttpProvider;
-use Tholcomb\Rw\Logger\LoggerProvider;
-use Tholcomb\Rw\Twig\TwigProvider;
+use Tholcomb\Symple\Core\Symple;
+use Tholcomb\Symple\Http\HttpProvider;
+use Tholcomb\Symple\Logger\LoggerProvider;
+use Tholcomb\Symple\Twig\TwigProvider;
 
 Symple::boot(); // Enables Symfony's ErrorHandler
 Symple::registerEnv('path/To/My/.env'); // Optional - Uses symfony/dotenv
