@@ -1,0 +1,5 @@
+<phpunit>
+	<testsuite name="running-water">
+		<directory>./src/*/Tests/</directory>
+	</testsuite>
+</phpunit>
