@@ -13,6 +13,7 @@ namespace Tholcomb\Symple\Core\Tests;
 use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use function Tholcomb\Symple\Core\class_implements_interface;
+use function Tholcomb\Symple\Core\exists_and_registered;
 use function Tholcomb\Symple\Core\isset_and_true;
 use function Tholcomb\Symple\Core\recursive_rm;
 
@@ -62,5 +63,14 @@ class UtilsTest extends TestCase {
 		$this->assertTrue(is_dir($dir));
 		recursive_rm($dir);
 		$this->assertFalse(is_dir($dir));
+	}
+
+	public function testExistsAndRegistered()
+	{
+		$c = new Container();
+		$this->assertFalse(exists_and_registered(uniqid('NonExistentClass'), $c), 'Nonexistent class');
+		$this->assertFalse(exists_and_registered(TestProvider::class, $c), 'Unregistered class');
+		$c->register(new TestProvider());
+		$this->assertTrue(exists_and_registered(TestProvider::class, $c), 'Registered class');
 	}
 }

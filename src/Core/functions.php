@@ -10,6 +10,8 @@
 
 namespace Tholcomb\Symple\Core;
 
+use Pimple\Container;
+
 function class_implements_interface(string $class, string $interface, bool $throw = false): bool
 {
 	if (!class_exists($class)) throw new \LogicException("Class '{$class}' does not exist");
@@ -49,4 +51,11 @@ function recursive_rm(string $dir): void
 		}
 	}
 	rmdir($dir);
+}
+
+function exists_and_registered(string $class, Container $c): bool
+{
+	$callable = [$class, 'isRegistered'];
+
+	return (class_exists($class) === true && call_user_func($callable, $c) === true);
 }
