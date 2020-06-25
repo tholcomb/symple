@@ -35,3 +35,18 @@ function isset_and_true($key, $arr): bool
 	}
 	return (isset($arr[$key]) && $arr[$key] === true);
 }
+
+function recursive_rm(string $dir): void
+{
+	if (!is_dir($dir)) throw new \InvalidArgumentException("Directory '$dir' does not exist");
+	$pattern = $dir . DIRECTORY_SEPARATOR . '{,.}*';
+	foreach (glob($pattern, GLOB_BRACE) as $i) {
+		if (in_array(basename($i), ['.', '..'])) continue;
+		if (is_file($i) || is_link($i)) {
+			unlink($i);
+		} elseif (is_dir($i)) {
+			recursive_rm($i);
+		}
+	}
+	rmdir($dir);
+}

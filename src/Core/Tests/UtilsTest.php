@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Pimple\Container;
 use function Tholcomb\Symple\Core\class_implements_interface;
 use function Tholcomb\Symple\Core\isset_and_true;
+use function Tholcomb\Symple\Core\recursive_rm;
 
 class UtilsTest extends TestCase {
 	public function testClassImplements()
@@ -47,5 +48,19 @@ class UtilsTest extends TestCase {
 		$container['b'] = false;
 		$this->assertTrue(isset_and_true('a', $container));
 		$this->assertFalse(isset_and_true('b', $container));
+	}
+
+	public function testRecursiveRm()
+	{
+		$dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('testRecursiveRm');
+		mkdir($dir);
+		$dir .= DIRECTORY_SEPARATOR;
+		touch($dir . 'testA');
+		mkdir($dir . 'testB');
+		touch($dir . 'testB' . DIRECTORY_SEPARATOR . 'testC');
+
+		$this->assertTrue(is_dir($dir));
+		recursive_rm($dir);
+		$this->assertFalse(is_dir($dir));
 	}
 }
