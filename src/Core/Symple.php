@@ -37,8 +37,6 @@ abstract class Symple {
 
 	final public static function registerEnv(string $envFile): void
 	{
-		if (!file_exists($envFile)) throw new \InvalidArgumentException("Could not find .env file at '$envFile'");
-
 		(new Dotenv())->loadEnv($envFile, self::ENV_KEY);
 	}
 
