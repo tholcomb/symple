@@ -72,11 +72,3 @@ class SympleTest extends TestCase {
 		$this->assertTrue(Symple::isDebug(), 'Debug was not set');
 	}
 }
-
-class ResetSymple extends Symple {
-	public static function reset(): void
-	{
-		static::$booted = false;
-		static::$debug = false;
-	}
-}
