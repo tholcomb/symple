@@ -22,6 +22,11 @@ class SympleTest extends TestCase {
 		$_SERVER[Symple::DISABLE_ERROR_HANDLER_KEY] = true;
 	}
 
+	protected function tearDown(): void
+	{
+		ResetSymple::reset();
+	}
+
 	public function testDotenvDefault(): void
 	{
 		Symple::registerEnv(self::ENV_FILE);
