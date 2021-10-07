@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push: ~
+  pull_request: ~
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        run:
+          - php: '8.0'
+          - php: '7.4'
+          - php: '7.3'
+          - php: '7.2'
+
+    steps:
+      - name: Set up PHP
+        uses: shivammathur/setup-php@2.7.0
+        with:
+          php-version: ${{ matrix.run.php }}
+          coverage: none
+          tools: phpunit
+          
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Download dependencies
+        uses: ramsey/composer-install@v1
+        
+      - name: Run tests
+        run: ./vendor/bin/phpunit
