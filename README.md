@@ -1,7 +1,7 @@
 # Symple PHP Framework 
 Yet Another Symfony-based PHP Framework
 
-[![Build Status](https://travis-ci.com/tholcomb/symple.svg?branch=master)](https://travis-ci.com/tholcomb/symple)
+[![Build Status](https://github.com/tholcomb/symple/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tholcomb/symple/actions/workflows/ci.yml)
 [![Latest Stable Version](https://poser.pugx.org/tholcomb/symple/v)](//packagist.org/packages/tholcomb/symple)
 [![Latest Unstable Version](https://poser.pugx.org/tholcomb/symple/v/unstable)](//packagist.org/packages/tholcomb/symple)
 [![License](https://poser.pugx.org/tholcomb/symple/license)](//packagist.org/packages/tholcomb/symple)
